@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Button, Stack } from "@mui/material";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-
+import { auth } from "../../firebase-folder";
 const Profile = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<any>(null);
@@ -17,16 +17,30 @@ const Profile = () => {
     }
   }, [navigate]);
 
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      navigate("/sign-in");
+    } catch (error: any) {
+      console.error("Error logging out:", error.message);
+    }
+  };
+
   return (
     <Box>
       {user ? (
-        <div>
+        <Stack>
           <Typography variant="h4">Profile Information</Typography>
           <Typography variant="body1">Email: {user.email}</Typography>
-        </div>
+          <Typography variant="body1">First Name: {user.FirstName}</Typography>
+          <Typography variant="body1">Last Name: {user.LastName}</Typography>
+        </Stack>
       ) : (
         <Typography variant="body1">Loading...</Typography>
       )}
+      <Button variant="contained" onClick={handleLogout}>
+        Logout
+      </Button>
     </Box>
   );
 };
