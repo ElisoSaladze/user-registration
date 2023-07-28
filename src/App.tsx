@@ -5,7 +5,7 @@ import { SignUp } from './pages/sign-up';
 import Profile from './pages/profile';
 const App = () => {
   return (
-      <BrowserRouter basename="/user-registration">
+    <BrowserRouter basename="/user-registration">
       <Routes>
         <Route path="/" element={<Navigate to="/sign-in" />} />
         <Route path="/sign-in" element={<SignIn />} />
