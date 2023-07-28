@@ -32,8 +32,6 @@ const Profile = () => {
         <Stack>
           <Typography variant="h4">Profile Information</Typography>
           <Typography variant="body1">Email: {user.email}</Typography>
-          <Typography variant="body1">First Name: {user.FirstName}</Typography>
-          <Typography variant="body1">Last Name: {user.LastName}</Typography>
         </Stack>
       ) : (
         <Typography variant="body1">Loading...</Typography>
